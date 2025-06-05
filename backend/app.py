@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv(override=True)
 
 from fastapi import FastAPI
-from routers import inscription_router, user_router, class_router
+from routers import inscription_router, user_router, class_router, locations_router
 from fastapi.middleware.cors import CORSMiddleware
 from src.connection import get_db_connection
 
@@ -19,6 +19,7 @@ app.add_middleware(
 app.include_router(inscription_router.router, prefix="/inscriptions")
 app.include_router(user_router.router, prefix="/user")
 app.include_router(class_router.router, prefix="/classes")
+app.include_router(locations_router.router, prefix="/address")
 
 @app.get("/health")
 def health_check():
