@@ -20,6 +20,25 @@ const search_users = (page_number = 0) => {
     });
 };
 
+const pageNumberInput = document.getElementById("page");
+
+
+document.getElementById("nextPage").addEventListener("click", () => {
+  page_num++;
+  pageNumberInput.value = page_num + 1;
+  search_users(page_num);
+});
+document.getElementById("prevPage").addEventListener("click", () => {
+  if (page_num > 0) {
+    page_num--;
+    pageNumberInput.value = page_num + 1;
+    search_users(page_num);
+  } else {
+    alert("Você já está na primeira página.");
+  }
+});
+
+
 
 closeModal.onclick = function() {
   modal.style.display = "none";
@@ -63,6 +82,20 @@ const add_user_row = (user) => {
 };
 
 const add_new_user_row = () => {
+  fetch(baseUrl + "address/get_all").then((res) => {
+    if (!res.ok) throw new Error(`Erro: ${res.status}`);
+      return res.json();
+    }
+    ).then((enderecos) => {
+      create_new_user_row(enderecos);
+    }
+    ).catch((err) => {
+      console.error("Erro ao buscar endereços:", err);
+    }
+    );
+  };
+
+const create_new_user_row = (enderecos) => {
   const row = document.createElement("tr");
   row.innerHTML = `
     <td><input type="text" placeholder="Nome" /></td>
@@ -70,7 +103,13 @@ const add_new_user_row = () => {
     <td><input type="date" /></td>
     <td><input type="text" placeholder="Celular" /></td>
     <td><input type="text" placeholder="CPF" /></td>
-    <td><input type="number" placeholder="Endereço ID" value="1" /></td>
+    <td>
+    
+      <select id="endereco_id">
+        <option value="">Selecione um endereço</option>
+        ${enderecos.map(endereco => `<option value="${endereco.id}">${endereco.rua}, ${endereco.cidade} - ${endereco.cep}</option>`).join('')}
+        <option value="new">Adicionar novo endereço</option>
+      </select>
     <td>
       <button onclick="create_user(this)"><i class="fa fa-plus"></i></button>
     </td>
@@ -80,7 +119,55 @@ const add_new_user_row = () => {
 
 const create_user = (btn) => {
   const inputs = btn.parentNode.parentNode.querySelectorAll("input");
-  const [name, email, birth_date, contact, cpf, endereco_id] = [...inputs].map(input => input.value);
+  const [name, email, birth_date, contact, cpf] = [...inputs].map(input => input.value);
+  const enderecoSelect = btn.parentNode.parentNode.querySelector("#endereco_id");
+  const endereco_id = enderecoSelect.value;
+
+  if (!name || !email || !birth_date || !contact || !cpf || !endereco_id) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+  if (endereco_id === "new") {
+    const newEndereco = prompt("Por favor, insira o novo endereço no formato: logradouro, cidade, cep, complemento");
+    if (!newEndereco) {
+      alert("Endereço não pode ser vazio.");
+      return;
+    }
+    const [logradouro, cidade, cep, complemento] = newEndereco.split(",").map(part => part.trim());
+    if (!logradouro || !cidade || !cep || !complemento) {
+      alert("Por favor, preencha todos os campos do endereço.");
+      return;
+    }
+    fetch(baseUrl + "address/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ "id" : Math.floor(Math.random() * 10000), "rua" : logradouro, cidade, cep, complemento })
+    })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Erro: ${res.status}`);
+      return res.json();
+    })
+    .then((data) => {
+      // usar o ID do novo endereço retornado
+      console.log("Endereço criado com sucesso:", data);
+      const newEnderecoId = data.id;
+      createUserWithAddress(name, email, birth_date, contact, cpf, newEnderecoId);
+    })
+    .catch((err) => {
+      console.error("Erro ao criar endereço:", err);
+      alert("Erro ao criar endereço: " + err.message);
+    });
+    return;
+  }
+  // se o endereço já existe, criar o usuário normalmente
+  createUserWithAddress(name, email, birth_date, contact, cpf, endereco_id);
+};
+
+const createUserWithAddress = (name, email, birth_date, contact, cpf, endereco_id) => {
+  if (!name || !email || !birth_date || !contact || !cpf || !endereco_id) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
 
   fetch(baseUrl + "user/create", {
     method: "POST",
@@ -93,7 +180,7 @@ const create_user = (btn) => {
   })
   .then(() => {
     alert("Usuário criado com sucesso!");
-    search_users();
+    search_users(page_num);
   })
   .catch((err) => {
     console.error("Erro ao criar usuário:", err);
@@ -102,12 +189,12 @@ const create_user = (btn) => {
 
 const update_user = (btn, id) => {
   const inputs = btn.parentNode.parentNode.querySelectorAll("input");
-  const [name, email, birth_date, contact, cpf, endereco_id] = [...inputs].map(input => input.value);
+  const [name, email, birth_date, contact, cpf] = [...inputs].map(input => input.value);
 
   fetch(baseUrl + "user/update", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id, name, email, birth_date, contact, cpf, endereco_id: Number(endereco_id) })
+    body: JSON.stringify({ id, name, email, birth_date, contact, cpf })
   })
   .then((res) => {
     if (!res.ok) throw new Error(`Erro: ${res.status}`);

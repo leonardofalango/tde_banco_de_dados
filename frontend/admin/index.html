@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="../class/style.css" />
   <script src="script.js" defer></script>
+  <script src="../pagination.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
@@ -39,6 +40,13 @@
       </thead>
       <tbody id="inputTbody"></tbody>
     </table>
+    <div class="pagination">
+      <label for="page">Página:</label>
+      <input type="number" id="page" value="1" min="1" disabled/>
+      <button id="prevPage" class="btn-page" onclick="changePage(-1)">Anterior</button>
+      <button id="nextPage" class="btn-page" onclick="changePage(1)">Próximo</button>
+      <p id="pageInfo"></p>
+    </div>
   </div>
 
   <div id="modal" class="modal">
