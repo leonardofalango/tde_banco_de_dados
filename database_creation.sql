@@ -7,7 +7,7 @@ CREATE TABLE Aluno (
     Nome VARCHAR(20),
     Data_Nascimento DATE,
     CPF VARCHAR(20),
-    fk_Endereco_Endereco_PK INT UNIQUE,
+    fk_Endereco_Endereco_PK INT,
     Celular VARCHAR(20),
     Email VARCHAR(80)
 );
@@ -17,7 +17,7 @@ CREATE TABLE Instrutor (
     Nome VARCHAR(20),
     Data_Nascimento DATE,
     CPF VARCHAR(20),
-    fk_Endereco_Endereco_PK INT UNIQUE,
+    fk_Endereco_Endereco_PK INT,
     Celular VARCHAR(20),
     Email VARCHAR(80)
 );
