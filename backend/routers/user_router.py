@@ -25,6 +25,7 @@ class UserCreate(BaseModel):
     birth_date: str
     contact: str
     cpf: str
+    endereco_id: int
 
 class UserUpdate(UserCreate):
     id: int
