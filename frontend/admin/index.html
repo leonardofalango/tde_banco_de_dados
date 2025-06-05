@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Administrador</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="../inscription/style.css" />
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Bem-vindo ao Sistema de Inscrição de Aulas</h1>
+    <nav>
+      <a href="../index.html">Início</a>
+      <a href="../admin/index.html">Admin</a>
+      <a href="../class/index.html">Inscrições</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Gerenciamento de Usuários</h1>
+    <p>Adicione, edite ou remova usuários do sistema.</p>
+  </main>
+  <div class="members">
+    <h2>Usuários</h2>
+    <button onclick="add_new_user_row()">+ Novo Usuário</button>
+    <table role="grid">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Data Nasc.</th>
+          <th>Celular</th>
+          <th>CPF</th>
+          <th>Endereço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="inputTbody"></tbody>
+    </table>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <p id="modalInfo"></p>
+    </div>
+  </div>
+</body>
+</html>

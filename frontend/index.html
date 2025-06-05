@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buscar Aulas</title>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Bem-vindo ao Sistema de Inscrição de Aulas</h1>
+    <nav>
+      <a href="#">Início</a>
+      <a href="admin/index.html">Admin</a>
+      <a href="class/index.html">Inscrições</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Buscar Aulas Disponíveis</h1>
+    <p>Insira seu email para visualizar as aulas disponíveis.</p>
+  <div class="flex">
+    <label for="email" id="emailInput">Insira seu email
+        <input class="txtBox" type="text" name="email" required />
+      </label>
+      <button id="searchBtn" class="buttonConfirm" type="button">Buscar Aulas</button>
+  </div>
+  </main>
+  <div class="members">
+    <table role="grid">
+      <thead>
+        <tr>
+          <th>Horário</th>
+          <th>Modalidade</th>
+          <th>Instrutor</th>
+          <th>Duração</th>
+          <th>Capacidade</th>
+          <th>Inscrição</th>
+        </tr>
+      </thead>
+      <tbody id="inputTbody"></tbody>
+    </table>
+  </div>
+</body>
+</html>

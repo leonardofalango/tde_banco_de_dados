@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aulas Disponíveis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <h1>Bem-vindo ao Sistema de Inscrição de Aulas</h1>
+    <nav>
+      <a href="../index.html">Início</a>
+      <a href="../admin/index.html">Admin</a>
+      <a href="../inscription/index.html">Inscrições</a>
+    </nav>
+  </header>
+  <main>
+    <p>Selecione uma aula abaixo para se inscrever.</p>
+  <h1>Aulas Disponíveis</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Horário</th>
+        <th>Modalidade</th>
+        <th>Instrutor</th>
+        <th>Duração</th>
+        <th>Capacidade</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody id="aulasBody">
+      <!-- Linhas serão inseridas via JS -->
+    </tbody>
+  </table>
+
+  <!-- Modal de Inscrição -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Inscrever-se na Aula</h2>
+      <p id="modalInfo"></p>
+      <input type="email" id="emailInput" placeholder="Digite seu e-mail" required />
+      <button id="confirmBtn" class="buttonConfirm wid">Confirmar Inscrição</button>
+    </div>
+  </div>
+</body>
+</html>
