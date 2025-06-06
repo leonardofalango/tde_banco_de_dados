@@ -118,7 +118,7 @@ INSERT INTO Participa (fk_Aluno_ID_Aluno, fk_Aula_ID_Aula) VALUES
 (8,1),(8,2),(8,3),(8,4), (8,5),
 (9,7), (9,8), (9,9), (9,10), (9,11), (9,12), (9,13), (9,14), (9,15),
 (10,1),
-(11 ,1),(11 ,2)
+(11 ,1),(11 ,2);
 
 
 INSERT INTO Utilizacao (fk_Exercicio_Nome, fk_Aula_ID_Aula, Repeticoes, Series) VALUES
