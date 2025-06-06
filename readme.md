@@ -68,4 +68,13 @@ Dentro da pasta `database/` estão os arquivos utilizados para:
 
 Estes arquivos são separados do backend pois não foram integrados diretamente ao frontend/backend da aplicação.
 
-<pre><code>``` database/ ├── database_creation.sql # Criação do database ├── logger_trigger.sql # Trigger para logger (INSERT/UPDATE/DELETE) – atividade 6.4 ├── pop_database.sql # Popular o database com 15 valores por tabela ├── procedures.sql # Criação de uma procedure – atividade 6.3 ├── selects.sql # Comandos SELECT com AGGREGATIONS e JOINS – atividades 6.1 e 6.2 ├── triggers.sql # Trigger para limitar número de alunos por aula – atividade 6.4 └── readme.md ```</code></pre>
+```
+database/
+├── database_creation.sql   # Criação do database
+├── logger_trigger.sql      # Trigger para logger (INSERT/UPDATE/DELETE) – atividade 6.4
+├── pop_database.sql        # Popular o database com 15 valores por tabela
+├── procedures.sql          # Criação de uma procedure – atividade 6.3
+├── selects.sql             # Comandos SELECT com AGGREGATIONS e JOINS – atividades 6.1 e 6.2
+├── triggers.sql            # Trigger para limitar número de alunos por aula – atividade 6.4
+└── readme.md
+```
