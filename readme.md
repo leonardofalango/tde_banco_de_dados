@@ -52,3 +52,20 @@ cd backend
 python uvicorn app:app --reload
 ```
 - Rode o frontend abrindo um servidor local ou ainda, abra diretamente o arquivo HTML
+
+---
+
+## 📆 Arquivos adicionais
+
+Dentro da pasta *database* possui os arquivos utilizados para criação do banco de dados, os arquivos para popular ele e alguns arquivos adicionais.
+Na atividade `Proj. Parte 2` era necessária a criação de comandos SELECT, de comandos TRIGGER e de PROCEDURES, como não utilizamos no frontend e nem no backend esses triggers, separei em arquivos adicionais
+Estutura dos arquivos adicionais:
+
+├── database/
+│ ├── database_creation.sql # Criação do database
+│ ├── logger_trigger.sql # Criação de trigger para logger / INSERT/UPDATE/DELETE | atividade 6.4
+│ ├── pop_database.sql # Popular o database com 15 valores em cada tabela
+│ ├── procedures.sql # Criação de uma procedure | atividade 6.3
+│ ├── selects.sql # Retornar alguns comandos SELECT com AGGREGATIONS/JOINS | atividade 6.1 e 6.2
+│ └── triggers.sql # Criação de um INSERT TRIGGER para não estourar a quantidade de alunos em cada aula | atividade 6.4
+└── readme.md
